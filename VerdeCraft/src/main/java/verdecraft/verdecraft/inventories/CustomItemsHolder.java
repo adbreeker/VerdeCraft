@@ -15,7 +15,7 @@ public class CustomItemsHolder implements InventoryHolder
 
     public CustomItemsHolder()
     {
-        inv = Bukkit.createInventory(this, 18,"Verdecraft Items");
+        inv = Bukkit.createInventory(this, 27,"Verdecraft Items");
         init();
     }
 
@@ -28,6 +28,10 @@ public class CustomItemsHolder implements InventoryHolder
         inv.setItem(inv.getSize()-1, EasterEggItems.HellFireWand);
         inv.addItem(BlockManager.NuclearReactor);
         inv.addItem(ItemManager.Uranium);
+        inv.setItem(inv.getSize()-2, EasterEggItems.MidasWill);
+        inv.addItem(BlockManager.Cable);
+        inv.getItem(5).setAmount(1);
+
     }
 
     @Override

@@ -38,28 +38,34 @@ public class NuclearReactorAddFuel implements Listener
                 NamespacedKey key = new NamespacedKey(Verdecraft.getPlugin(Verdecraft.class),"reactor-fuel");
                 if(container.has(key, PersistentDataType.INTEGER))
                 {
+                    int reactor_fuel = container.get(key,PersistentDataType.INTEGER);
                     if(event.getItem() != null)
                     {
                         if(event.getItem().getItemMeta() != null)
                         {
                             if(event.getItem().getItemMeta().equals(ItemManager.Uranium.getItemMeta()))
                             {
-                                int reactor_fuel = container.get(key,PersistentDataType.INTEGER);
-                                if(reactor_fuel < 5)
+                                if(reactor_fuel < 480)
                                 {
-                                    System.out.println("dodaje paliwa");
-                                    reactor_fuel += 600;
-                                    if(reactor_fuel > 10)
+                                    reactor_fuel += 4800;
+                                    if(reactor_fuel > 4800)
                                     {
-                                        reactor_fuel = 10;
+                                        reactor_fuel = 4800;
                                     }
                                     container.set(key,PersistentDataType.INTEGER,reactor_fuel);
                                     state.update();
                                     event.getItem().setAmount(event.getItem().getAmount()-1);
+                                    event.getPlayer().sendMessage("Reactor fuel increased to §2100%§f, Reactor working at full speed");
                                 }
+                                else
+                                {
+                                    event.getPlayer().sendMessage("Reactor fuel §2" + (reactor_fuel/48) + "%§f Refueling available after decaying under §410%");
+                                }
+                                return;
                             }
                         }
                     }
+                    event.getPlayer().sendMessage("Reactor fuel §2" + (reactor_fuel/48) + "%§f Refueling available after decaying under §410%");
                 }
             }
         }

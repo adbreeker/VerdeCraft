@@ -14,10 +14,11 @@ import java.util.List;
 
 public class EasterEggItems
 {
-    public static ItemStack HellFireWand;
+    public static ItemStack HellFireWand, MidasWill;
     public static void init_items()
     {
         createHellFireWand();
+        createMidasWill();
     }
 
     private static void createHellFireWand()
@@ -43,5 +44,20 @@ public class EasterEggItems
         HellFireWandRecipe.setIngredient('F',Material.FIRE_CHARGE);
         Bukkit.getServer().addRecipe(HellFireWandRecipe);
 
+    }
+
+    private static void createMidasWill()
+    {
+        ItemStack item = new ItemStack(Material.GOLD_INGOT, 1);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("§6Midas's Will");
+        List<String> lore = new ArrayList<>();
+        lore.add("§fLast will of legendary Midas");
+        lore.add("");
+        meta.setLore(lore);
+        meta.addEnchant(Enchantment.LUCK, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        item.setItemMeta(meta);
+        MidasWill = item;
     }
 }

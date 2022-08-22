@@ -14,10 +14,11 @@ import java.util.Random;
 
 public class BlockManager
 {
-    public static ItemStack NuclearReactor;
+    public static ItemStack NuclearReactor, Cable;
     public static void init_blocks()
     {
         createNuclearReactor();
+        createCable();
     }
 
     private static void createNuclearReactor()
@@ -36,6 +37,23 @@ public class BlockManager
         new_nuclear_reactor.setIngredient('G',Material.GLASS);
         new_nuclear_reactor.setIngredient('C',Material.COPPER_INGOT);
         Bukkit.getServer().addRecipe(new_nuclear_reactor);
+    }
+
+    private static void createCable()
+    {
+        ItemStack item = new ItemStack(Material.RED_NETHER_BRICK_WALL,6);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("Cable");
+        item.setItemMeta(meta);
+        Cable = item;
+
+        //Recipes
+        Bukkit.getServer().removeRecipe(NamespacedKey.minecraft("red_nether_brick_wall"));
+        ShapedRecipe new_cable = new ShapedRecipe(NamespacedKey.minecraft("cable"),Cable);
+        new_cable.shape("   ", "CRC", "   ");
+        new_cable.setIngredient('C',Material.COPPER_INGOT);
+        new_cable.setIngredient('R',Material.REDSTONE);
+        Bukkit.getServer().addRecipe(new_cable);
     }
 
 }

@@ -26,7 +26,7 @@ public class HFW_Handler implements Listener
         {
             if(event.getItem() != null)
             {
-                if(event.getItem().getItemMeta().displayName() != null)
+                if(event.getItem().getItemMeta() != null)
                 {
                     if(event.getItem().getItemMeta().equals(EasterEggItems.HellFireWand.getItemMeta()))
                     {

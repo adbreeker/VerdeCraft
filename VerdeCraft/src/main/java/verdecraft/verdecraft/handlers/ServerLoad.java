@@ -1,6 +1,7 @@
 package verdecraft.verdecraft.handlers;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -17,6 +18,7 @@ import verdecraft.verdecraft.handlers.blocks.NuclearReactorPlace;
 import verdecraft.verdecraft.items.BlockManager;
 import verdecraft.verdecraft.items.ItemManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,11 +35,12 @@ public class ServerLoad implements Listener
             @Override
             public void run()
             {
-                for(Location NuclearReactor : (List<Location>) BlockLocations.get().getList("NuclearReactors"))
+                List<Location> check_reactors = new ArrayList<>((List<Location>) BlockLocations.get().getList("NuclearReactors"));
+                for(Location NuclearReactor : check_reactors)
                 {
                     Block reactor = NuclearReactor.getBlock();
                     Block reactor_chest = reactor.getWorld().getBlockAt(reactor.getX(), reactor.getY()+1, reactor.getZ());
-                    if(reactor.getType().equals(BlockManager.NuclearReactor.getType()) && reactor_chest.getState() instanceof TileState)
+                    if(NuclearReactorPlace.isNuclearReactor(reactor))
                     {
                         System.out.println("wznawiam prace reaktora");
                         ReactorWorking(reactor,reactor_chest);
@@ -47,7 +50,6 @@ public class ServerLoad implements Listener
                         System.out.println("usuwam nieistniejacy reaktor");
                         BlockLocations.deleteNuclearReactor(NuclearReactor);
                     }
-
                 }
             }
         }.runTaskLater(plugin,20*10);
@@ -56,37 +58,75 @@ public class ServerLoad implements Listener
 
     public void ReactorWorking(Block reactor, Block reactor_chest)
     {
-        if(reactor.getType().equals(BlockManager.NuclearReactor.getType()) && reactor_chest.getState() instanceof TileState)
+        if(NuclearReactorPlace.isNuclearReactor(reactor))
         {
             TileState state = (TileState) reactor_chest.getState();
             PersistentDataContainer container = state.getPersistentDataContainer();
             NamespacedKey key = new NamespacedKey(Verdecraft.getPlugin(Verdecraft.class),"reactor-fuel");
-            if(container.has(key, PersistentDataType.INTEGER))
+            int reactor_fuel = container.get(key,PersistentDataType.INTEGER);
+            if(reactor_fuel > 0)
             {
-                int reactor_fuel = container.get(key,PersistentDataType.INTEGER);
-                if(reactor_fuel > 0)
+                reactor_fuel = reactor_fuel - 1;
+                container.set(key,PersistentDataType.INTEGER,reactor_fuel);
+                state.update();
+                Random random = new Random();
+                int RNG = random.nextInt(1000);
+                if(RNG == 0)
                 {
-                    System.out.println("reaktor pracuje " + reactor_fuel);
-                    reactor_fuel = reactor_fuel - 1;
-                    container.set(key,PersistentDataType.INTEGER,reactor_fuel);
-                    state.update();
-                    Random random = new Random();
-                    int RNG = random.nextInt(300);
-                    if(RNG != 0)
+                    Chest chest = (Chest) reactor_chest.getState();
+                    chest.getInventory().addItem(ItemManager.Battery);
+                }
+                List<Block> cables = new ArrayList<>();
+                List<Block> devices = new ArrayList<>();
+                devices.add(reactor);
+                NuclearReactorPlace.findConnections(reactor,cables,devices);
+                if(reactor_fuel == 0)
+                {
+                    new BukkitRunnable()
                     {
-                        Chest chest = (Chest) reactor_chest.getState();
-                        chest.getInventory().addItem(ItemManager.Battery);
-                    }
+                        @Override
+                        public void run()
+                        {
+                            for(Block check_in : devices)
+                            {
+                                if(check_in.getType() == Material.REDSTONE_LAMP)
+                                {
+                                    NuclearReactorPlace.setLampLight(check_in,false);
+                                }
+                            }
+                        }
+                    }.runTaskLater(plugin,10);
                 }
                 new BukkitRunnable()
                 {
                     @Override
                     public void run()
                     {
-                        ReactorWorking(reactor.getWorld().getBlockAt(reactor.getLocation()), reactor_chest.getWorld().getBlockAt(reactor_chest.getLocation()));
+                        List<Block> cables_check = new ArrayList<>();
+                        List<Block> devices_check = new ArrayList<>();
+                        devices_check.add(reactor);
+                        NuclearReactorPlace.findConnections(reactor,cables_check,devices_check);
+                        for(Block check_in : devices)
+                        {
+                            if(!devices_check.contains(check_in))
+                            {
+                                if(check_in.getType() == Material.REDSTONE_LAMP)
+                                {
+                                    NuclearReactorPlace.setLampLight(check_in,false);
+                                }
+                            }
+                        }
                     }
-                }.runTaskLater(plugin,20);
+                }.runTaskLater(plugin,5);
             }
+            new BukkitRunnable()
+            {
+                @Override
+                public void run()
+                {
+                    ReactorWorking(reactor.getWorld().getBlockAt(reactor.getLocation()), reactor_chest.getWorld().getBlockAt(reactor_chest.getLocation()));
+                }
+            }.runTaskLater(plugin,5);
         }
     }
 }

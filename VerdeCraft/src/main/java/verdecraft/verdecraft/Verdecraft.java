@@ -6,9 +6,11 @@ import org.bukkit.scheduler.BukkitTask;
 import verdecraft.verdecraft.commands.*;
 import verdecraft.verdecraft.easter_egg.HFW_Handler;
 import verdecraft.verdecraft.easter_egg.EasterEggItems;
+import verdecraft.verdecraft.easter_egg.MW_Handler;
 import verdecraft.verdecraft.files.BlockLocations;
 import verdecraft.verdecraft.files.TemperatureConfig;
 import verdecraft.verdecraft.handlers.*;
+import verdecraft.verdecraft.handlers.blocks.CableDestroy;
 import verdecraft.verdecraft.handlers.blocks.NuclearReactorAddFuel;
 import verdecraft.verdecraft.handlers.blocks.NuclearReactorDestroy;
 import verdecraft.verdecraft.handlers.blocks.NuclearReactorPlace;
@@ -68,6 +70,7 @@ public final class Verdecraft extends JavaPlugin
         getServer().getPluginManager().registerEvents(new NuclearReactorDestroy(this),this);
         getServer().getPluginManager().registerEvents(new ServerLoad(this),this);
         getServer().getPluginManager().registerEvents(new NuclearReactorAddFuel(this),this);
+        getServer().getPluginManager().registerEvents(new CableDestroy(this),this);
 
         //items------------------------------------------------------------------------------------------------
         ItemManager.init_items();
@@ -76,5 +79,6 @@ public final class Verdecraft extends JavaPlugin
         //easter_egg----------------------------------------------------------------------------------------------
         EasterEggItems.init_items();
         getServer().getPluginManager().registerEvents(new HFW_Handler(this),this);
+        getServer().getPluginManager().registerEvents(new MW_Handler(this),this);
     }
 }

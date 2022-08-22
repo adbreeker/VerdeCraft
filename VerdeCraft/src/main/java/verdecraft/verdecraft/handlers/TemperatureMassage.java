@@ -22,17 +22,31 @@ public class TemperatureMassage extends BukkitRunnable
         for(Player player : Bukkit.getServer().getOnlinePlayers())
         {
             long time = player.getWorld().getTime();
-            if (time >= 0 && time < 51)
+            if (time >= 0 && time <= 51)
             {
-                sendMassage(player);
+                sendTemperatureMassage(player);
             }
         }
     }
 
-    public void sendMassage(Player player)
+    public void sendTemperatureMassage(Player player)
     {
         double temperature = TemperatureConfig.get().getDouble("Temperature");
-        double temp_rounded = BigDecimal.valueOf(temperature).setScale(1, RoundingMode.HALF_DOWN).doubleValue();
-        player.sendMessage("Actual temperature is: " + Double.toString(temp_rounded) + "°C");
+        if(temperature < 20)
+        {
+            player.sendMessage("§2Today temperature is in norm");
+        }
+        if(temperature >= 20 && temperature < 30)
+        {
+            player.sendMessage("§aToday temperature is perfect for summer vacation");
+        }
+        if(temperature >= 30 && temperature < 45)
+        {
+            player.sendMessage("§cToday temperature is to hot");
+        }
+        if(temperature >= 45)
+        {
+            player.sendMessage("§4Today temperature is apocalyptic!");
+        }
     }
 }
