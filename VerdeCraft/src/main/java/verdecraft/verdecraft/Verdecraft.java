@@ -46,12 +46,12 @@ public final class Verdecraft extends JavaPlugin
         BlockLocations.save();
 
         //commands----------------------------------------------------------------------------------------------
-        getCommand("temp_check").setExecutor(new TempCheck());
-        getCommand("temp_set").setExecutor(new TempSet());
-        getCommand("time_check").setExecutor(new TimeCheck());
-        getCommand("give_custom_items").setExecutor(new GiveCustomItems());
-        getCommand("modi_check").setExecutor(new ModiCheck());
-        getCommand("modi_set").setExecutor(new ModiSet());
+        getCommand("verde_temp_check").setExecutor(new TempCheck());
+        getCommand("verde_temp_set").setExecutor(new TempSet());
+        getCommand("verde_time_check").setExecutor(new TimeCheck());
+        getCommand("verde_items").setExecutor(new VerdeItems());
+        getCommand("verde_modi_check").setExecutor(new ModiCheck());
+        getCommand("verde_modi_set").setExecutor(new ModiSet());
 
 
         //handlers------------------------------------------------------------------------------------------------

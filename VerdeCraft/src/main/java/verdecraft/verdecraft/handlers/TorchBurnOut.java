@@ -31,7 +31,7 @@ public class TorchBurnOut implements Listener
                 {
                     if(event.getBlock().getType() == Material.TORCH || event.getBlock().getType() == Material.WALL_TORCH)
                     {
-                        event.getBlock().getWorld().dropItem(event.getBlock().getLocation(),new ItemStack(Material.STICK,1));
+                        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(),new ItemStack(Material.STICK,1));
                         event.getBlock().setType(Material.AIR);
                     }
                     else

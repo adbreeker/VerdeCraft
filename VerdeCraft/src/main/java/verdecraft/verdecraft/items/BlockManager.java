@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class BlockManager
 {
-    public static ItemStack NuclearReactor, Cable;
+    public static ItemStack NuclearReactor, Cable, Cable6;
     public static void init_blocks()
     {
         createNuclearReactor();
@@ -41,15 +41,19 @@ public class BlockManager
 
     private static void createCable()
     {
-        ItemStack item = new ItemStack(Material.RED_NETHER_BRICK_WALL,6);
+        ItemStack item = new ItemStack(Material.RED_NETHER_BRICK_WALL,1);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("Cable");
         item.setItemMeta(meta);
         Cable = item;
 
+        ItemStack itemx6 = new ItemStack(item);
+        itemx6.setAmount(6);
+        Cable6 = itemx6;
+
         //Recipes
         Bukkit.getServer().removeRecipe(NamespacedKey.minecraft("red_nether_brick_wall"));
-        ShapedRecipe new_cable = new ShapedRecipe(NamespacedKey.minecraft("cable"),Cable);
+        ShapedRecipe new_cable = new ShapedRecipe(NamespacedKey.minecraft("cable"),Cable6);
         new_cable.shape("   ", "CRC", "   ");
         new_cable.setIngredient('C',Material.COPPER_INGOT);
         new_cable.setIngredient('R',Material.REDSTONE);

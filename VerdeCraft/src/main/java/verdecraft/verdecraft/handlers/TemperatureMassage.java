@@ -42,7 +42,7 @@ public class TemperatureMassage extends BukkitRunnable
         }
         if(temperature >= 30 && temperature < 45)
         {
-            player.sendMessage("§cToday temperature is to hot");
+            player.sendMessage("§cToday temperature is too hot");
         }
         if(temperature >= 45)
         {

@@ -30,7 +30,6 @@ public class CustomItemsHolder implements InventoryHolder
         inv.addItem(ItemManager.Uranium);
         inv.setItem(inv.getSize()-2, EasterEggItems.MidasWill);
         inv.addItem(BlockManager.Cable);
-        inv.getItem(5).setAmount(1);
 
     }
 
