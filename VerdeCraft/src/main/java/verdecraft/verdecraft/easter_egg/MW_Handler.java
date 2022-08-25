@@ -43,10 +43,10 @@ public class MW_Handler implements Listener
                                     {
                                         makeSigns(block_to_change.getLocation(), Material.DIAMOND_BLOCK);
                                     }
-                                    //if(block_to_change.getType() == Material.DEEPSLATE_COAL_ORE)
-                                    //{
-                                    //    makeSigns(block_to_change.getLocation(), Material.COAL_BLOCK);
-                                    //}
+                                    if(block_to_change.getType() == Material.DEEPSLATE_COAL_ORE)
+                                    {
+                                        makeSigns(block_to_change.getLocation(), Material.COAL_BLOCK);
+                                    }
                                     if(block_to_change.getType() == Material.ANCIENT_DEBRIS)
                                     {
                                         makeSigns(block_to_change.getLocation(), Material.NETHERITE_BLOCK);

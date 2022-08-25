@@ -21,6 +21,7 @@ public class TorchBurnOut implements Listener
         {
             this.plugin = plugin;
         }
+
         @EventHandler
         public void onTorchPlace(BlockPlaceEvent event)
         {

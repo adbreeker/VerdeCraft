@@ -15,22 +15,29 @@ public class CustomItemsHolder implements InventoryHolder
 
     public CustomItemsHolder()
     {
-        inv = Bukkit.createInventory(this, 27,"Verdecraft Items");
+        inv = Bukkit.createInventory(this, 45,"Verdecraft Items");
         init();
     }
 
     private void init()
     {
-        inv.addItem(ItemManager.ElectricLamp);
-        ItemManager.changeSerialNumber();
+        // classic VerdeCraft items
+        inv.addItem(BlockManager.NuclearReactor);
+        inv.addItem(BlockManager.Cable);
+        inv.addItem(BlockManager.UraniumOre);
+        inv.addItem(ItemManager.Uranium);
+        inv.addItem(ItemManager.UraniumCell);
+        inv.addItem(ItemManager.NuclearWaste);
         inv.addItem(ItemManager.Battery);
         inv.addItem(new ItemStack(Material.CLOCK,1));
-        inv.setItem(inv.getSize()-1, EasterEggItems.HellFireWand);
-        inv.addItem(BlockManager.NuclearReactor);
-        inv.addItem(ItemManager.Uranium);
-        inv.setItem(inv.getSize()-2, EasterEggItems.MidasWill);
-        inv.addItem(BlockManager.Cable);
+        inv.addItem(ItemManager.ElectricLamp);
+        ItemManager.changeSerialNumber();
+        inv.addItem(ItemManager.MiningHelmet);
 
+
+        //easter egg items
+        inv.setItem(inv.getSize()-1, EasterEggItems.HellFireWand);
+        inv.setItem(inv.getSize()-2, EasterEggItems.MidasWill);
     }
 
     @Override

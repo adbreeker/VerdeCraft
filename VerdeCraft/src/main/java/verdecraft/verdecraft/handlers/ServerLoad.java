@@ -8,7 +8,8 @@ import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import verdecraft.verdecraft.Verdecraft;
 import verdecraft.verdecraft.files.BlockLocations;
-import verdecraft.verdecraft.handlers.blocks.MakeNuclearReactorWork;
+import verdecraft.verdecraft.handlers.blocks.nuclear_reactor.MakeNuclearReactorWork;
+import verdecraft.verdecraft.items.BlockManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ServerLoad implements Listener
                 {
                     Block reactor = NuclearReactor.getBlock();
                     Block reactor_chest = reactor.getWorld().getBlockAt(reactor.getX(), reactor.getY()+1, reactor.getZ());
-                    if(MakeNuclearReactorWork.isNuclearReactor(reactor))
+                    if(BlockManager.isNuclearReactor(reactor))
                     {
                         System.out.println("wznawiam prace reaktora");
                         new MakeNuclearReactorWork(plugin,reactor,reactor_chest);
