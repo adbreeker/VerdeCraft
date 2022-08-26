@@ -1,6 +1,7 @@
 package verdecraft.verdecraft.handlers;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.event.EventHandler;
@@ -8,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import verdecraft.verdecraft.Verdecraft;
 
 public class EntityDrop implements Listener
@@ -50,6 +52,15 @@ public class EntityDrop implements Listener
                 }
             }
             event.getDrops().add(new ItemStack(Material.INK_SAC,1));
+        }
+        if(event.getEntity().getPersistentDataContainer() != null)
+        {
+            NamespacedKey key = new NamespacedKey(Verdecraft.getPlugin(Verdecraft.class),"contaminated");
+            if(event.getEntity().getPersistentDataContainer().has(key, PersistentDataType.INTEGER))
+            {
+                event.getDrops().clear();
+                event.getDrops().add(new ItemStack(Material.ROTTEN_FLESH,1));
+            }
         }
     }
 }

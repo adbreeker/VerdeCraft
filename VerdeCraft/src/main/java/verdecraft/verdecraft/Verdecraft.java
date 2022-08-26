@@ -84,6 +84,7 @@ public final class Verdecraft extends JavaPlugin
         getServer().getPluginManager().registerEvents(new UraniumOreSmelt(this),this);
         getServer().getPluginManager().registerEvents(new EntityDrop(this),this);
         getServer().getPluginManager().registerEvents(new NuclearWasteDropOrPlace(this),this);
+        getServer().getPluginManager().registerEvents(new AnimalsContaminatedByNuclearWastes(this),this);
 
         //items------------------------------------------------------------------------------------------------
         ItemManager.init_items();
