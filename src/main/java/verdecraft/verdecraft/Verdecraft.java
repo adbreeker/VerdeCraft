@@ -93,6 +93,7 @@ public final class Verdecraft extends JavaPlugin
         getServer().getPluginManager().registerEvents(new SolarPanelPlace(this),this);
         getServer().getPluginManager().registerEvents(new SolarPanelDestroy(this),this);
         getServer().getPluginManager().registerEvents(new TemperatureDecreaseByActions(this),this);
+        getServer().getPluginManager().registerEvents(new DisableRedstoneOnLamps(this),this);
 
         //items------------------------------------------------------------------------------------------------
         ItemManager.init_items();

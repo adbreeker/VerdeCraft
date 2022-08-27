@@ -29,7 +29,7 @@ public class MakeSolarPanelWork
         if(solar.getType() == Material.DAYLIGHT_DETECTOR)
         {
             Block lower = solar.getWorld().getBlockAt(solar.getX(), solar.getY()-1, solar.getZ());
-            if(solar.getWorld().getTime() >= 3000 && solar.getWorld().getTime() <= 9000 && solar.getLightLevel() == 15)
+            if(solar.getWorld().getTime() >= 2000 && solar.getWorld().getTime() <= 10000 && solar.getLightLevel() == 15)
             {
                 if(lower.getType() == Material.FURNACE || lower.getType() == Material.BLAST_FURNACE || lower.getType() == Material.SMOKER)
                 {
