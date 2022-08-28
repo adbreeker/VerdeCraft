@@ -9,6 +9,8 @@ In repository you can find 3 directories:
 
 -VerdeCraft.jar   this is the plugin itself, add it to your plugins directory to use it,
                   main minecraft version for this plugin is 1.19 but it possibly works on other versions
+                  
+*Plugin is adapted to PaperMc servers, i am not sure if it works on other server types.
                  
           
           
