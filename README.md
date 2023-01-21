@@ -20,6 +20,3 @@ In repository you can find 4 directories:
           
 Good luck and have fun!
 
-
-https://user-images.githubusercontent.com/111668308/213841322-d36bbd0c-fdf8-4b34-b62d-f0338a96e9cf.mp4
-
