@@ -13,7 +13,9 @@ In repository you can find 4 directories:
   - VerdeCraft Texturepack.zip - this is compresed texturepack folder, its not necessary but highly recommended 
                               to take advantage of those customized texture for our plugin, 
                               if you want to use it just unpack this zip in resourcepack folder in your .minecraft
-                  
+  
+ <br /> 
+  
 *Plugin is adapted to PaperMc servers, i am not sure if it works on other server types.        
 
 <br />    
