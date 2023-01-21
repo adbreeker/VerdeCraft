@@ -14,16 +14,16 @@ In repository you can find 4 directories:
                               to take advantage of those customized texture for our plugin, 
                               if you want to use it just unpack this zip in resourcepack folder in your .minecraft
                   
-*Plugin is adapted to PaperMc servers, i am not sure if it works on other server types.
-                 
-          
-          
+*Plugin is adapted to PaperMc servers, i am not sure if it works on other server types.        
+
+<br />    
+
 Good luck and have fun!
 
-
-
-
-
+<br />  
+<br />  
+<br />  
+<br />  
 
 
 
